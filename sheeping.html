@@ -1,0 +1,1240 @@
+<html>
+  <head>
+    <script src="processing.js"></script>
+  </head>
+
+  <body>
+    <script type="text/processing" data-processing-target="mycanvas">
+
+      int numWools = 50; //털조각 몇 개?
+              
+        
+      PImage head; //라인 헤드 
+      PImage body; //라인 바디 
+
+      PImage key1; //검은구름키 
+      PImage keycolored;
+      PImage key2; //선구름키 
+      PImage keycolored2;
+      PImage key3; //색구름키 
+      PImage keycolored3;
+      PImage key4; //배경키 
+      PImage keycolored4;
+
+      PImage cloud;
+      PImage cloud2;
+      PImage headCloudC;
+      PImage bodyC;
+      PImage legDown;
+      PImage legUp;
+      PImage headC;
+      PImage headUp;
+      PImage headSurp;
+      PImage ground;
+      PImage text;
+
+      PImage textLine;
+      PImage bodyCloud;
+      PImage headCloud;
+      PImage stars;
+      PImage go;
+      PImage go_;
+
+      PImage lightning;
+      PImage lightning2;
+      PImage bone;
+
+      PImage buttons;
+      PImage backspace;
+      PImage L1;
+      PImage L2;
+      PImage L3;
+
+      PImage R1;
+      PImage R2;
+      PImage R3;
+      PImage R4;    /////큰 양 
+
+      PImage Rl1;
+      PImage Rl2;
+      PImage Rl3;
+      PImage Rl4;    /////작은 양 
+
+      PImage walk1;
+      PImage walk2;
+      PImage walk3;
+      PImage walk4;  /////검은 양 
+      PImage bodyCloudl;
+      PImage headl;
+      PImage headCloudl;
+
+      PImage mountain1;
+      PImage sun1;
+      PImage sun2;
+      PImage moon1;
+      PImage moon2;
+      PImage filter;
+      PImage Whead;
+
+      int clicked1 =0; //어떤 키를 클릭했나? 
+
+      float a=random(237, 243);
+      float b=random(281, 290);
+      float c=random(280, 287);
+      float d=random(285, 283);
+      //눈 위치 랜덤값
+      float t=125;
+      float t1=80;
+      // 번쩍번쩍 랜덤값
+
+
+      BatangA bodyA = new BatangA();
+      BatangB bodyB = new BatangB();
+
+      Walking walkA = new Walking(random(250, 750), 270, 1);
+      Walking walkB = new Walking(random(250, 750), 285, 2);
+      Walking walkC = new Walking(random(250, 750), 299, 3);
+      Walking walkD = new Walking(random(250, 750), 310, 4);
+      Walking walkE = new Walking(random(250, 750), 332, 5);
+      Walking walkF = new Walking(random(250, 750), 350, 6);
+      Walking walkG = new Walking(random(250, 750), 370, 5);
+      Walking walkH = new Walking(random(250, 750), 390, 4);
+      Walking walkI = new Walking(random(250, 750), 410, 3);
+      Walking walkJ = new Walking(random(250, 750), 430, 2);
+      Walking walkK = new Walking(random(250, 750), 450, 1);
+
+      Eye e1, e2;
+      Wool[] wools;
+
+
+      void setup() {
+      size(750, 600);
+      frameRate(10);
+
+      head = loadImage("data/head1-1.png");
+      body = loadImage("data/body1.png");
+      bodyCloud = loadImage("data/Cloudbody.png");
+      headCloud = loadImage("data/Cloudhead.png");
+
+
+      textLine = loadImage("data/textL.png");
+      buttons = loadImage("data/1_1.png");
+      backspace = loadImage("data/1_2.png");
+      L1 = loadImage("data/1_0.png");
+      L2 = loadImage("data/2_0.png");
+      L3 = loadImage("data/3_0.png");
+
+      go = loadImage("data/go.png");
+      go_ = loadImage("data/go_.png");
+      key1 = loadImage("data/key1.png");
+      keycolored = loadImage("data/keycolored1.png");
+      key2 = loadImage("data/key2.png");
+      keycolored2 = loadImage("data/keycolored.png");
+      key3 = loadImage("data/key3.png");
+      keycolored3 = loadImage("data/keycolored3.png");
+      key4 = loadImage("data/key4.png");
+      keycolored4 = loadImage("data/keycolored4.png");
+
+      //////////////////////////////////////////
+
+      cloud = loadImage("data/Cloud1.png");
+      cloud2 = loadImage("data/Cloud2.png");
+      headCloudC = loadImage("data/HeadCloud.png");
+      bodyC = loadImage("data/body.png"); 
+      legDown = loadImage("data/LegDown.png");
+      legUp = loadImage("data/LegUpUp.png");
+      headC = loadImage("data/Head1.png");
+      headUp = loadImage("data/HeadUp2.png");
+      headSurp = loadImage("data/HeadUpUp1.png");
+      stars = loadImage("data/bling.png");
+      bone = loadImage("data/bone.png");
+      lightning = loadImage("data/lightning.png");
+      lightning2 = loadImage("data/lightning2.png");
+
+      R1 = loadImage("data/1.png");
+      R2 = loadImage("data/2.png");
+      R3 = loadImage("data/3.png");
+      R4 = loadImage("data/4.png");
+
+      walk1 = loadImage("data/walk1.png");
+      walk2 = loadImage("data/walk2.png");
+      walk3 = loadImage("data/walk3.png");
+      walk4 = loadImage("data/walk4.png");
+
+      ground = loadImage("data/Ground.png");
+      text = loadImage("data/text.png");
+
+      //////////////////////////////////////////
+
+      mountain1 = loadImage("data/mountain1.png");
+      filter = loadImage("data/filter.png");
+
+      sun1 = loadImage("data/sun1.png");
+      sun2 = loadImage("data/sun2.png");
+      moon1 = loadImage("data/moon1.png");
+      moon2 = loadImage("data/moon2.png");
+
+      Whead = loadImage("data/Whead.png");
+
+      Rl1 = loadImage("data/1l.png");
+      Rl2 = loadImage("data/2l.png");
+      Rl3 = loadImage("data/3l.png");
+      Rl4 = loadImage("data/4l.png");
+
+      bodyCloudl = loadImage("data/Cloudbodyl.png");
+      headl = loadImage("data/headl1-1.png");
+      headCloudl = loadImage("data/Cloudheadl.png");
+
+      wools = new Wool[numWools];
+      for (int i=0; i<numWools; i++) {
+          wools[i] = new Wool(random(205, 347), random(269, 348), random(100, 200), random(120, 150));
+      }//털조각 위치 및 크기.
+
+      e1 = new Eye(240, 285, 27);
+      e2 = new Eye(280, 290, 27);
+      //눈알
+      }
+      float mp1 =1;
+      float mp2 =1;
+      float mp3 =1;
+      float mp4 =1;
+      float mp5 =1;
+      float mpSpeed1 =3;
+      float mpSpeed2 =4;
+      float mpSpeed3 =5;
+      float mpSpeed4 =6;
+      float mpSpeed5 =7;
+      ////속도 다른 배경 
+
+      float wSpeed =2;
+
+      float p=0;
+      float pspeed=5;
+      //퇴장 움직임 
+
+      void draw() {
+
+      if (clicked1==0 || clicked1==1 || clicked1==2) {
+          if (clicked1==2 &&mousePressed) {
+          bodyA.setup();
+          } else {
+          bodyA.setup();
+          bodyA.draa();
+          }
+      } else if (clicked1==3) bodyB.draw();
+      else if (clicked1==4) {
+          p+=pspeed;
+          background(255);
+          noFill();
+          stroke(0);
+          strokeWeight(0.7);
+          arc(width/2, height-10, 1100, 410, -50, PI+QUARTER_PI, OPEN);
+          pushMatrix();
+          p+=1;
+          if (p%4==0) {
+          fill(0);
+          ellipse(300-p+5, 443, 40, 18);
+          ellipse(427-p+5, 443, 40, 18);
+          image(R1, 385-p, height/2, width, height);
+          } else if (p%4==1) {
+          fill(0);
+          ellipse(325-p+5, 446, 40, 18);
+          ellipse(427-p+5, 443, 40, 18);
+          image(R2, 385-p, height/2, width, height);
+          } else if (p%4==2) {
+          fill(0);
+          ellipse(335-p+5, 446, 40, 18);
+          ellipse(455-p+5, 447, 40, 18);
+          image(R3, 385-p, height/2, width, height);
+          } else if (p%4==3) {
+          fill(0);
+          ellipse(300-p+5, 443, 40, 18);
+          ellipse(465-p+5, 447, 40, 18);
+          image(R4, 385-p, height/2, width, height);
+          }
+          popMatrix();
+      } else if (clicked1==5) { ///////배경 움직임 
+          walkA.setup();
+
+
+          walkA.body(120, 1);
+          walkA.WCloudB(120, 1);
+          walkA.head(120, 1);
+          walkA.HCloudB(120);
+          ///////////검은털
+
+          walkB.bodyB(140, 2.4);
+          walkB.WCloudW(140, 2.4);
+          walkB.headB(140, 2.4);
+          walkB.HCloudW(140);
+          //////////하얀털
+
+          walkC.body(160, 0.7);
+          walkC.WCloudL(160, 0.7);
+          walkC.head(160, 0.7);
+          walkC.HCloudL(160);
+          //////////선 털 
+
+          walkE.body(260, 2.4);
+          walkE.WCloudB(260, 2.4);
+          walkE.head(260, 2.4);
+          walkE.HCloudB(260);
+          /////////검은 털 
+
+          walkD.body(100, 0.5);
+          walkD.WCloud(100, 0.5);
+          walkD.head(100, 0.5);
+          walkD.HCloud(100);
+          /////////기본 털 
+
+          walkF.body(180, 1.4);
+          walkF.WCloudL(180, 1.4);
+          walkF.head(180, 1.4);
+          walkF.HCloudL(180);
+          /////////선 털 
+
+          walkG.body(240, 1.5);
+          walkG.WCloud(240, 1.5);
+          walkG.head(240, 1.5);
+          walkG.HCloud(240);
+          ///////////기본털 
+
+          walkH.body(270, 1.6);
+          walkH.WCloud(270, 1.6);
+          walkH.head(270, 1.6);
+          walkH.HCloud(270);
+          ////////기본털
+
+          walkI.bodyB(80, 1.2);
+          walkI.WCloudW(80, 1.2);
+          walkI.headB(80, 1.2);
+          walkI.HCloudW(80);
+          ////////하얀털 
+
+          walkJ.body(200, 1.5);
+          walkJ.WCloudL(200, 1.5);
+          walkJ.head(200, 1.5);
+          walkJ.HCloudL(200);
+          //////////선 털
+
+          walkK.bodyB(60, 1.7);
+          walkK.WCloudW(60, 1.7);
+          walkK.headB(60, 1.7);
+          walkK.HCloudW(60);
+          //////////하얀털
+
+
+          if (mouseX<=375) {
+          pushMatrix();
+          mp1+=mpSpeed1;
+          image(filter, width/2+mp1%1700, height/2+1, 1700, 600);
+          image(filter, width/2-1700+mp1%1700, height/2, 1700, 600);
+          popMatrix();
+          } //////밤필터
+      }
+
+
+
+      ////// KEY ///////// 
+      if (clicked1==1 || clicked1==2 || clicked1==3 || clicked1==5) {
+      } else {
+          image(buttons, width/2, height/2, width, height);
+      }
+
+      if (clicked1==5) {
+      } else {
+          if (mouseX>550 && mouseX<650 && mouseY>100-60 && mouseY<100+60) {
+          image(keycolored4, 600, 100, 80, 120);
+          } else {
+          image(key4, 600, 100, 80, 120);
+          }//배경키
+      }
+
+      if (mouseX>170 && mouseX<270 && mouseY>470 && mouseY<570) {
+          image(keycolored, 220, 520, 100, 100);
+      } else {
+          image(key1, 220, 520, 100, 100);
+      } //검은구름키 
+      if (mouseX>325 && mouseX<425 && mouseY>470 && mouseY<570) {
+          image(keycolored2, 375, 520, 100, 100);
+      } else {
+          image(key2, 375, 520, 100, 100);
+      } //빈구름키 
+
+      if (mouseX>480 && mouseX<580 && mouseY>470 && mouseY<570) {
+          image(keycolored3, 530, 520, 100, 100);
+      } else {
+          image(key3, 530, 520, 100, 100);
+      } //색구름키 
+      if (clicked1==0) {
+          if (mouseX>35 && mouseX<105 && mouseY>265 && mouseY<335) {
+          image(go_, 70, 300, 70, 70);
+          } else {
+          image(go, 70, 300, 70, 70);
+          }
+      }
+      if (clicked1 ==1 || clicked1 ==2 || clicked1 ==3 || clicked1 ==4 || clicked1 ==5) {
+          image(backspace, width/2, height/2, width, height);
+      } ///홈으로 돌아가려면 backspace를 누르세요.
+      if (clicked1==1) {
+          image(L1, width/2, height/2, width, height);
+      } else if (clicked1==2) {
+          image(L2, width/2, height/2, width, height);
+      } else if (clicked1==3) {
+          image(L3, width/2, height/2, width, height);
+      }
+      //////////////////////////
+
+
+
+
+      if (clicked1 ==1) { ////검은구름 
+          if (key==ENTER) bodyA.ColorCloudB(random(70, 100), random(50, 100), mouseY-150);
+          else bodyA.BlackCloudB();
+      } else if (clicked1 ==2) {
+          if (mouseX>250 && mouseX<485 && mouseY>232 && mouseY<384 && mousePressed) {
+          if (frameCount%2==0) {
+              image(lightning, width/2, height/2, random(748, 752), random(598, 602));
+          } else if (frameCount%2==1) {
+              image(lightning2, width/2, height/2, random(748, 752), random(598, 602));
+          }
+          bodyA.Bone(random(748, 752), random(598, 602));
+          } else {
+          bodyA.draa();
+          bodyA.LineCloudB();
+          image(head, width/2, height/2, width, height);
+          bodyA.LineCloudH();
+          e1.update(mouseX, mouseY);
+          e2.update(mouseX, mouseY);
+
+          e1.display();
+          e2.display();
+          }    ////선구름
+      } else if (clicked1 ==3) {    ////색구름
+          pushMatrix();
+          noStroke();
+          fill(#82C4DE);
+          rect(50, 300, 90, 90);
+          popMatrix();
+          for (int i=0; i<numWools; i++) {
+          wools[i].display();
+          }//털조각 생성
+      } else if (clicked1 ==4) {    ////퇴장 
+          p+=pspeed;
+          pushMatrix();
+          translate(-p, p%8);
+          image(bodyCloud, 381, 320, 270, 160);
+          popMatrix();
+      } else if (clicked1 ==5) {
+      } else {                ////기본구름 
+          image(bodyCloud, 381, 320, 270, 160);
+      }
+      /////////////////////////////////////////////////몸통 털 
+
+
+      if (clicked1==0 || clicked1==1 || clicked1==2) {
+          if (clicked1==2 && mousePressed) {
+          } else {
+          image(head, width/2, height/2, width, height);
+          }
+      } else if (clicked1 ==3) {
+      } else if (clicked1 ==4) {    ////퇴장 
+          image(head, width/2-p, height/2+(p%8-4), width, height);
+      } else if (clicked1 ==5) {
+      } else {
+      }
+      //////////////////////////////////////////////머리 
+
+
+      if (clicked1 ==1) { 
+          if (key==ENTER) bodyA.ColorCloudH(random(70, 100), random(50, 100), mouseY-150);
+          else  bodyA.BlackCloudH();
+          ////검은구름
+      } else if (clicked1 ==2) {
+          if (mousePressed) {
+          } else {
+          bodyA.LineCloudH();
+          }
+      }
+      ////선구름 
+
+      else if (clicked1 ==3) bodyB.HeadCloud();
+
+      else if (clicked1 ==4) {
+          image(headCloud, 270-p, 250+(p%8-4), 120, 80);
+      } else if (clicked1 ==5) {
+      } else {     ////기본구름 
+          image(headCloud, 270, 250, 120, 80);
+      }
+      /////////////////////////////////////////////////머리 털
+
+      if ((clicked1==2 && mousePressed) ||clicked1==5) {
+      } else {
+          e1.update(mouseX, mouseY);
+          e2.update(mouseX, mouseY);
+
+          e1.display();
+          e2.display();
+          //눈알 업데이트
+      }
+      }
+
+
+      //마우스 클릭 안 했을 때 체크
+      void mouseReleased() {
+      for (int i=0; i<numWools; i++) {
+          wools[i].clicked = false; // 클릭 여부가 false
+      }
+      }
+
+      //마우스 드래그 여부 체크
+      void mouseDragged() {
+      for (int i=0; i<numWools; i++) {
+          wools[i].update(); //드래그하면 위치값 변화 (update함수 작동)
+      }
+      }
+
+      //마우스 클릭 여부 체크
+      void mousePressed() {
+      for (int i=0; i<numWools; i++) {
+          wools[i].checkClicked(mouseX, mouseY);
+          if (wools[i].clicked) break;  //하나만 클릭
+      }
+      }
+
+
+      void mouseClicked() {
+      if (mouseX>170 && mouseX<270 && mouseY>470 && mouseY<570) clicked1 = 1;
+      if (mouseX>325 && mouseX<425 && mouseY>470 && mouseY<570) clicked1 = 2;
+      if (mouseX>480 && mouseX<580 && mouseY>470 && mouseY<570) clicked1 = 3;
+      if (mouseX> 35 && mouseX<105 && mouseY>265 && mouseY<335) clicked1 = 4;
+      if (mouseX>550 && mouseX<650 && mouseY>100-60 && mouseY<100+60) clicked1 =5;
+      }
+
+
+      void keyPressed() {
+      if (key == '1' || key=='!') clicked1 =1;
+      if (key == '2' || key=='@') clicked1 =2;
+      if (key == '3' || key=='#') clicked1 =3;
+      if (key == '4' || key=='$') clicked1 =5;
+      if (key == 'q' || key=='Q') clicked1 =4;
+
+      if (keyCode==BACKSPACE) {
+          clicked1 =0;
+          p=0;
+      }
+      }
+
+      class BatangA {
+
+          BatangA() {
+          }
+        
+          float ty=100;
+          float tySpeed=1;
+          //제목 움직이기 
+        
+        
+        
+          void setup() {
+            background(255);
+            noFill();
+            stroke(0);
+            strokeWeight(0.7);
+            arc(width/2, height-10, 1100, 410, -50, PI+QUARTER_PI, OPEN);
+          }
+        
+          void draa() {
+        
+            pushMatrix();
+            fill(0);
+            ellipse(300, 443, 40, 18);
+            ellipse(325, 446, 40, 18);
+            ellipse(427, 443, 40, 18);
+            ellipse(455, 447, 40, 18);
+            popMatrix();
+            //그림자 
+            image(body, width/2, height/2, width, height);
+        
+            ty = ty+tySpeed;
+            if (ty>107) tySpeed = tySpeed * -1 ;
+            if (ty<100) tySpeed = tySpeed * -1 ;
+            imageMode(CENTER);
+            image(textLine, 375, ty, 430, 120);
+          }
+        
+        
+          void BlackCloudH() {
+            for (int i=0; i<40; i++) {
+              float x =random(230, 300);
+              float y =random(223, 259);
+              noStroke();
+              fill(0);
+              circle(x, y, random(10, 40));
+            }
+          } ////검은구름 머리털 
+          
+          void BlackCloudB() {
+            for (int i=0; i<100; i++) {
+              float x = random(295, 452);
+              float y = random(264, 345);
+              noStroke();
+              fill(0);
+              circle(x, y, random(5, 90));
+              pushMatrix();
+              noStroke();
+              fill(255);
+              rect(50, 300, 90, 90);
+              popMatrix();
+            }
+          } /////검은구름 몸 
+        
+          void ColorCloudH(float r, float g, float b) {
+            for (int i=0; i<40; i++) {
+              float x =random(230, 300);
+              float y =random(223, 259);
+              noStroke();
+              fill(random(r-100, r+100), g, b);
+              circle(x, y, random(10, 40));
+            }
+            for (int t=0; t<2; t++) {
+              float x2 = random(214, 311);
+              float y2 = random(208, 262);
+              image(stars, x2, y2, 70, 70);
+            }
+            //색깔구름 머리털 
+            stroke(0);
+            fill(255);
+            rect(75, 60, 50, 480, 15);
+            noStroke();
+            for (float i=90; i<510; i++) {
+              fill(r, g, i-170);
+              circle(100, i, 30);
+            } 
+        
+            if (mouseY<410) {
+              fill(249);
+              circle(100, 90+mouseY, 20);//////이동바
+            } else if (mouseY>=410) {
+              fill(249);
+              circle(100, 503, 20);//////이동바
+            } else {
+            }
+          }
+        
+          void ColorCloudB(float r, float g, float b) {
+            for (int i=0; i<100; i++) {
+              float x = random(295, 452);
+              float y = random(264, 345);
+              noStroke();
+              fill(random(r-100, r+100), g, b);
+              circle(x, y, random(5, 90));
+              for (int t=0; t<1; t++) {
+                float x1 = random(280, 442);
+                float y1 = random(260, 340);
+                pushMatrix();
+                image(stars, x1, y1, 70, 70);
+                popMatrix();
+              } ///몸통털 
+              pushMatrix();
+              noStroke();
+              fill(255);
+              rect(50, 300, 90, 90);
+              popMatrix();
+            }
+          } ////색깔구름 몸털 
+        
+          void LineCloudH() {
+            float distM=dist(width/2, height/2+30, mouseX, mouseY);
+            for (int i=0; i<40; i++) {
+              float x =random(230, 300);
+              float y =random(223, 265);
+              noFill();
+              strokeWeight(0.7);
+              if (mouseX>250 && mouseX<485 && mouseY>232 && mouseY<384) {
+                if (mousePressed) {
+                  pushMatrix();
+                  noStroke();
+                  fill(0);
+                  circle(x, y, random(5, 60));
+                  popMatrix();
+                } else {
+                  pushMatrix();
+                  strokeWeight(1.3);
+                  stroke(random(46, 209), random(46, 209), random(46, 209));
+                  circle(x, y, random(5, 60));
+                  popMatrix();
+                }
+              } else {
+                stroke(0);
+                circle(x, y, random(5, 40));
+              }
+            } 
+            for (int i=0; i<20; i++) {
+              float x =random(230, 300);
+              float y =random(223, 265);
+              noFill();
+              strokeWeight(0.7);
+              if (mouseX>250 && mouseX<485 && mouseY>232 && mouseY<384) {
+                pushMatrix();
+                strokeWeight(1.3);
+                stroke(random(46, 209), random(46, 209), random(46, 209));
+                circle(x, y, random(5, distM*3.5));
+                popMatrix();
+              } else {
+                stroke(0);
+                circle(x, y, random(5, 60));
+              }
+            }
+          }
+        
+          void LineCloudB() {
+            float distM=dist(width/2, height/2+30, mouseX, mouseY);
+            pushMatrix();
+            noStroke();
+            fill(255);
+            rect(50, 300, 90, 90);
+            popMatrix();
+            for (int i=0; i<150; i++) {
+              float x = random(295, 450);
+              float y = random(264, 345);
+              noFill();
+              strokeWeight(0.7);
+              if (mouseX>250 && mouseX<485 && mouseY>232 && mouseY<384) {
+                strokeWeight(1.3);
+                stroke(random(46, 209), random(46, 209), random(46, 209));
+                pushMatrix();
+                translate(x, y);
+                rotate(radians(random(0, 360)));
+                ellipse(0, 0, random(5, distM*9), random(5, distM*9));
+                popMatrix();
+              } else {
+                stroke(0);
+                circle(x, y, random(5, 90));
+              }
+            } //////선구름 몸통
+          }
+        
+          //float boneX =random(748, 752);
+          //float boneY =random(598, 602);
+          void Bone(float boneX, float boneY) {
+            for (int i=0; i<40; i++) {
+              float x =random(230, 300);
+              float y =random(228, 270);
+              stroke(0);
+              fill(0);
+              circle(x, y, random(5, 40));
+            } ///머리털 
+        
+            for (int i=0; i<100; i++) {
+              float x = random(295, 450);
+              float y = random(277, 358);
+              fill(0);
+              circle(x, y, random(5, 60));
+            } ///몸털 
+            image(bone, width/2+random(-5, 5), height/2+random(-5, 5), boneX, boneY);
+          }
+        }
+
+        class BatangB {
+
+          float ty=100;
+        float tySpeed=1;
+        //제목 움직이기 
+        
+        void draw() {
+          background(#82C4DE);
+          noStroke();
+          if (mousePressed) {
+            stroke(#FCDE30);
+            strokeWeight(8);
+            for (int i=0; i<100; i++) {
+              pushMatrix();
+              translate(370, 300);
+              rotate(frameCount/10);
+              rotate(radians(i*6));
+              line(0, 0, random(t1, t), 0);
+              popMatrix();
+              strokeWeight(random(2, 10));
+            }
+          }//번쩍번쩍
+          //
+          imageMode(CENTER);
+          image(ground, width/2, height/2, 750, 600);
+          //잔디
+          
+          ty = ty+tySpeed;
+          if (ty>107) tySpeed = tySpeed * -1 ;
+          if (ty<100) tySpeed = tySpeed * -1 ;
+          imageMode(CENTER);
+          image(text, 375, ty, 430, 120);
+      
+          if (mousePressed) {
+            image(bodyC, 373, random(305, 314), random(267, 280), random(186, 195));
+          } else if (mouseX>220 && mouseX<520 && mouseY>250 && mouseY<350) {
+            fill(#1F1C21);
+            image(bodyC, 375, random(307, 311), random(268, 273), random(188, 192));
+          } else {
+            image(bodyC, 375, 310, 270, 190);
+          } //몸통 
+      
+          if (mouseX>270 && mouseX<300 && mouseY>345 && mouseY<440) {
+            pushMatrix();
+            translate(82, 20);
+            image(legUp, 210, 370, 90, 110);
+            popMatrix();
+          } else {
+            pushMatrix();
+            translate(82, 5);
+            image(legDown, 210, 390, 60, 130);
+            popMatrix();
+          }//앞 좌측 
+      
+          if (mouseX>310 && mouseX<340 && mouseY>350 && mouseY<445) image(legUp, 320, 380, 90, 110);
+          else image(legDown, 320, 400, 60, 130);
+          //앞 우측 
+      
+          if (mouseX>417 && mouseX<455 && mouseY>350 && mouseY<445) {
+            pushMatrix();
+            translate(212, 5);
+            image(legUp, 210, 395, 90, 110);
+            popMatrix();
+          } else {
+            pushMatrix();
+            translate(212, 5);
+            image(legDown, 210, 390, 60, 130);
+            popMatrix();
+          }//뒤 좌측 
+      
+          if (mouseX>455 && mouseX<505 && mouseY>355 && mouseY<450) {
+            pushMatrix();
+            translate(240, 0);
+            image(legUp, 210, 395, 90, 110);
+            popMatrix();
+          } else {
+            pushMatrix();
+            translate(240, 10);
+            image(legDown, 210, 390, 60, 130);
+            popMatrix();
+          }//뒤 우측
+        }
+      
+        void HeadCloud() {
+          pushMatrix();
+          translate(0, -10);
+          if (mousePressed) {
+            image(headSurp, random(268, 272), random(277, 283), random(189, 192), random(148, 152)); 
+            image(headCloudC, random(272, 280), random(203, 210), 100, 60);
+            fill(#F7BEBF);
+            noStroke();
+            ellipse(225+(dist(a, b, c, d))/2, 312, random(47, 50), random(17, 20));
+            stroke(#E35C5E);
+            strokeWeight(3);
+            for (int p = 0; p<4; p++) {
+              line(270-p*10, 308, 260-p*10, 320);
+              //홍조
+            }
+          } else if (mouseX>220 && mouseX<520 && mouseY>240 && mouseY<370) {
+            image(headUp, random(270, 273), random(288, 292), 190, 150); 
+            image(headCloudC, random(275, 278), random(254, 258), 120, 70);
+          } else {
+            image(headC, 270, 290, 190, 150); 
+            image(headCloudC, 278, 256, 120, 70);
+          }
+          popMatrix();
+        }
+      }
+
+      class Eye {
+          int x, y;
+          int size;
+          float angle = 0.0;
+        
+          Eye(int tx, int ty, int ts) {
+            x = tx;
+            y = ty;
+            size = ts;
+          }
+        
+          void update(int mx, int my) {
+            angle = atan2(my-y, mx-x);
+          }
+        
+          void display() {
+            float cg = random(162, 211);
+            float cb = random(196, 211);
+            if (clicked1 == 3) {
+              if (mousePressed) {
+                noStroke();
+                fill(255);
+                circle(237, 273, random(45, 47));
+                circle(281, 276, random(45, 47));  //흰자
+                fill(0);
+                circle(238, 273, random(30, 34));
+                circle(281, 276, random(30, 34));  //검은자
+                //클릭시 놀람
+              } else if (mouseX>220 && mouseX<520 && mouseY>240 && mouseY<370) {
+                fill(255);
+                noStroke();
+                circle(random(240, 242), random(287, 280), random(34, 36));
+                circle(random(280, 282), random(295, 287), random(34, 36));  //흰자
+                fill(0);
+                circle(random(236, 244), 286, random(18, 22));
+                circle(random(278, 285), 295, random(18, 22));  //검은자
+                //마우스 올림
+              } else {
+                pushMatrix();
+                stroke(0);
+                strokeWeight(1);
+                translate(x-5, y);
+                fill(255);
+                ellipse(0, 0, size, size);
+                rotate(angle);
+                fill(0);
+                ellipse(size/5, 0, size*0.6, size*0.6);
+                popMatrix();
+              } 
+        
+              if (dist(a, b, mouseX, mouseY)<24) {
+                pushMatrix();
+                translate(0, 0);
+                rotate(radians(10));
+                translate(280, 257);
+                fill(126, cg, cb);
+                ellipse(0, 0, 20, 8);
+                noFill();
+                popMatrix();
+                pushMatrix();
+                strokeWeight(4);
+                stroke(126, cg, cb);
+                beginShape();
+                vertex(230, 300);
+                quadraticVertex(227, 286+33, 233, 286+60);
+                endShape();
+                popMatrix();
+              } //눈물 L
+        
+              if (dist(c, d, mouseX, mouseY)<24) {
+                fill(126, cg, cb);
+                ellipse(c+2, d+26, 20, 8);
+                noFill();
+                pushMatrix();
+                strokeWeight(4);
+                stroke(126, cg, cb);
+                beginShape();
+                vertex(c+2, d+26);
+                quadraticVertex(c+1, d+31, c-4, d+50);
+                endShape();
+                popMatrix();
+              } //눈물 R
+            } else { ///전체 평소 
+              if (clicked1 ==4) {
+                pushMatrix();
+                translate(-p, (p%8-4));
+                stroke(0);
+                strokeWeight(1);
+                translate(x-5, y);
+                fill(255);
+                ellipse(0, 0, size, size);
+                rotate(angle);
+                fill(0);
+                ellipse(size/5, 0, size*0.6, size*0.6);
+                popMatrix();
+              } else {
+                pushMatrix();
+                stroke(0);
+                strokeWeight(1);
+                translate(x-5, y);
+                fill(255);
+                ellipse(0, 0, size, size);
+                rotate(angle);
+                fill(0);
+                ellipse(size/5, 0, size*0.6, size*0.6);
+                popMatrix();
+              }
+            }
+          }
+        }
+
+        class Walking {
+          float tt=0;
+          float startx =0;
+          float starty =0;
+          float tspeed;
+          //float speed=
+        
+        
+          Walking(float _startx, float _starty, float _speed) {
+            startx=_startx;
+            starty=_starty;
+            tspeed=_speed;
+          }
+        
+          void setup() {
+        
+            if (mouseX>375) {
+              background(#82C4DE);
+              for (int i=0; i<24; i++) {
+                pushMatrix();
+                tint(255);
+                translate(370, height-250);
+                rotate(radians(mouseX));
+                translate(-200, 250);
+                rotate(radians(i*15));
+                strokeWeight(2);
+                stroke(0);
+                //stroke(255, random(188, 235), 3);
+                line(0, 0, random(60, 70), 0);
+                popMatrix();
+        
+                pushMatrix();
+                translate(370, height-250);
+                rotate(radians(mouseX));
+                translate(-200, 250);
+                noStroke();
+                fill(#82C4DE);
+                circle(0, 0, random(83, 90));
+                popMatrix();
+              } //////태양광 
+        
+              pushMatrix();
+              translate(370, height-250);
+              rotate(radians(mouseX));
+              translate(-200, 250);
+              rotate(radians(mouseX));
+              if (p%2==0) image(sun1, 0, 0, 75, 75);
+              else if (p%2==1) image(sun2, 0, 0, 75, 75);
+              popMatrix();
+              /////태양
+            } else if (mouseX<=375) {
+              background(#393871);
+              pushMatrix();
+              tint(255);
+              translate(370, height-250);
+              rotate(radians(mouseX));
+              translate(-200, 250);
+              rotate(radians(mouseX));
+              if (p%2==0) image(moon1, 0, 0, 75, 75);
+              else if (p%2==1) image(moon2, 0, 0, 75, 75);
+              popMatrix();
+              /////달
+            }
+        
+            pushMatrix();
+            mp1+=mpSpeed1;
+            image(mountain1, width/2+mp1%1700, height/2+1, 1700, 600);
+            image(mountain1, width/2-1700+mp1%1700, height/2, 1700, 600);
+            popMatrix();
+          }/////배경 
+        
+        
+          void body(float leg, float speed) {
+            tt+=speed;
+            p +=mpSpeed1;
+        
+            pushMatrix();
+            translate(startx-tt, starty+p%4);
+            if (p%4==0) {
+              image(Rl1, 0, 0-leg/5, 325, 300);
+            } else if (p%4==1) {
+              image(Rl2, 0, 0-leg/5, 325, 300);
+            } else if (p%4==2) {
+              image(Rl3, 0, 0-leg/5, 325, 300);
+            } else if (p%4==3) {
+              image(Rl4, 0, 0-leg/5, 325, 300);
+            }
+            popMatrix();
+        
+            if (tt>=740) tt=-410;
+          }
+        
+        
+          //////검은 몸 ---------------------------------------//////////
+          void bodyB(float leg, float speed) {
+            tt+=speed;
+            p +=mpSpeed1;
+        
+            pushMatrix();
+            translate(startx-tt, starty+p%4);
+            if (p%4==0) {
+              image(walk1, 0, 0-leg/5, 140, 140);
+            } else if (p%4==1) {
+              image(walk2, 0, 0-leg/5, 140, 140);
+            } else if (p%4==2) {
+              image(walk3, 0, 0-leg/5, 140, 140);
+            } else if (p%4==3) {
+              image(walk4, 0, 0-leg/5, 140, 140);
+            }
+            popMatrix();
+        
+            if (tt>=740) tt=-410;
+          } 
+        
+        
+          //////검은 털 ---------------------------------------//////////
+          void WCloudB(float leg, float speed) {
+            tt+=speed;
+            pushMatrix();
+            translate(startx-33-tt, starty+p%4-leg/5.2);
+            for (int i=0; i<110; i++) {
+              float x = random(0, 65);
+              float y = random(-10, 27);
+              noStroke();
+              fill(0);
+              circle(x, y, random(5, 33));
+            }
+            popMatrix();
+          }
+        
+          //////기본 털 ---------------------------------------//////////
+          void WCloud(float leg, float speed) {
+            tt+=speed;
+            pushMatrix();
+            translate(startx-30-tt, starty+3+p%4-leg/5.2);
+            image(bodyCloudl, 32.5, 5, 110, 75);
+            popMatrix();
+          }
+        
+          //////선 털 ----------------------------------------//////////
+          void WCloudL(float leg, float speed) {
+            tt+=speed;
+            pushMatrix();
+            translate(startx-33-tt, starty+p%4-leg/5.2);
+            for (int i=0; i<130; i++) {
+              float x = random(0, 70);
+              float y = random(-10, 32);
+              noFill();
+              strokeWeight(0.7);
+              stroke(0);
+              circle(x, y, random(5, 33));
+            }
+            popMatrix();
+          }
+        
+          //////하얀 털 ----------------------------------------//////////
+          void WCloudW(float leg, float speed) {
+            tt+=speed;
+            pushMatrix();
+            translate(startx-30-tt, starty+p%4-leg/5.2);
+            image(cloud2, 32.5, 5, 110, 75);
+            popMatrix();
+          }
+        
+        
+          //--------------------------------------------------------------------------------//
+        
+        
+          //////기본 머리 ----------------------------------------//////////
+          void head(float leg, float speed) {
+            tt+=speed;
+            p+=tspeed;
+            pushMatrix();
+            image(headl, startx-tt, starty+p%4-leg/5.2, 315, 293);
+            popMatrix();
+          }
+        
+          //////검은 머리 ----------------------------------------////////////////
+          void headB(float leg, float speed) {
+            tt+=speed;
+            p+=tspeed;
+            pushMatrix();
+            image(Whead, startx-20-tt, starty+p%4-leg/5.2, 120, 120);
+            popMatrix();
+          }
+        
+          //--------------------------------------------------------------------------------//
+        
+        
+          //////검은 머리털 ---------------------------------------////////////////
+          void HCloudB(float leg) {
+            pushMatrix();
+            translate(startx-53-tt, starty-3+p%4-leg/5.2);
+            for (int i=0; i<40; i++) {
+              float x = random(-8, 15);
+              float y = random(-26, -13);
+              noStroke();
+              fill(0);
+              circle(x, y, random(4, 21));
+            }
+            popMatrix();
+          }
+        
+          //////하얀 머리털 ---------------------------------------////////////////
+          void HCloudW(float leg) {
+            pushMatrix();
+            translate(startx-48-tt, starty-3+p%4-leg/5.2);
+            image(headCloudC, 0, -18, 45, 32);
+            popMatrix();
+          }
+        
+          //////선 머리털 ---------------------------------------////////////////
+          void HCloudL(float leg) {
+            pushMatrix();
+            translate(startx-53-tt, starty-8+p%4-leg/5.2);
+            for (int i=0; i<40; i++) {
+              float x = random(-12, 19);
+              float y = random(-21, -7);
+              strokeWeight(0.7);
+              noFill();
+              circle(x, y, random(4, 21));
+            }
+            popMatrix();
+          }
+        
+          //////기본 머리털 ---------------------------------------////////////////
+          void HCloud(float leg) {
+            pushMatrix();
+            translate(startx-48-tt, starty-3+p%4-leg/5.2);
+            image(headCloudl, 0, -18, 52, 37);
+            popMatrix();
+          }
+        }
+
+
+        class Wool {
+          float x, y;
+          float w, h;   //변수 설정.
+          boolean clicked;  //TRUE면 클릭을 함. FALSE면 클릭안함.
+        
+          Wool(float _x, float _y, float _w, float _h) {
+            x = _x;
+            y = _y;
+            w = _w;
+            h = _h;
+            clicked = false;
+          }
+        
+          //클릭이 됐는가?
+          void checkClicked(float cx, float cy) {
+            if (cx>x+50  &&  cx<x+w-50  &&  cy>y-30  &&  cy<y+h-110) {
+              clicked = true;
+            } else {
+              clicked = false;
+            }
+          }
+        
+          //위치값을 업데이트 (update함수 작동)
+          void update() {
+            if (clicked) {
+              float dx = mouseX - pmouseX;
+              float dy = mouseY - pmouseY;
+              x += dx;
+              y += dy;
+            }
+          }
+        
+          void display () {
+            if (clicked1 ==3) {
+              pushMatrix();
+              translate(100, 0);
+              image(cloud, x, y, w/2, h/2);
+              //image(cloud2, x, y, w/2, h/2);
+              popMatrix();
+            }
+          }
+        }
+  
+    </script>
+    <canvas id="mycanvas"></canvas>
+  </body>
+</html>
